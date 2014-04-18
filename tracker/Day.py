@@ -50,7 +50,7 @@ class Day(object):
         if it exists, and if none exist then it returns False.
         '''
         for p in self.patient_list:
-            if p.name == name and p.DOB = DOB:
+            if p.name == name and p.DOB == DOB:
                 return p
         return False
         
