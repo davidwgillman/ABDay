@@ -1,0 +1,60 @@
+Outlines for writing pseudo-code flowchart doc
+
+-The document must have a series of steps, separated by lines.
+
+-Start with a step line declaring the step name, e.g. for step
+"Lab Tests", the line would read "Step: Lab Tests"
+
+-The next line should declare the input variables for that step,
+e.g. "input: US Value, float". Separate name of input, and input
+data type with a comma. Separate multiple inputs with a semicolon.
+
+-After that will be if, then statements, and GoTo commands.
+
+-These lines are evaluated in order.
+
+-The possible conditions to check are of the following format:
+
+	-if (VARIABLE) is True/False
+	-if (VARIABLE) > x
+	-if (VARIABLE) < x
+	-if (VARIABLE) == x
+	-if (STEPNAME) is done
+	-if (STEPNAME) is not done
+
+The (VARIABLE) is a written string name of the data being compared to
+some x.
+
+x's are checked as floats
+
+SPACES ARE IMPORTANT!
+
+-After the condition is written, on the same line, write a space, and
+"then", to list the order. There are two possible orders right now:
+
+	-GoTo (STEPNAME)
+	-Flag (EMERGENCY/NOTE)
+
+Most often used is the GoTo command to tell the code that if these
+conditions are met, to head to this step next. The flow getNextStep()
+method will then return that next step to the Day class, which should
+allow the GUI to implement the appropriate page display off of the
+form data within that step object.
+
+Flagging something will tell the code to put in the string listed
+after the "Flag" to the next Step returned. The GUI will then read
+this flag, and react. Normally, the flag will be a null string. 
+
+
+Capitalization and spaces are important when writing the pseudo-code here,
+so that the flow class can properly parse the document. It's not too 
+smart, it needs the text in this specific way.
+
+I made an example flowchart doc, called Flowchart Doc. Check that out
+to get an idea of the setup.
+
+ALSO, VERY IMPORTANT, THE CONDITIONS ARE CHECKED AND ORDERS APPLIED IN
+ORDER. THIS MEANS THAT YOU CAN WRITE CONFLICTING LINES, KNOWING THAT 
+THE ONE WRITTEN FIRST WILL BE CHECKED FIRST, AND IF YOU'VE MADE IT
+PAST THAT, I.E. THE PROGRAM IS CHECKING THE NEXT LINE, THEN THE
+FIRST LINE'S CONDITION WAS NOT MET.
