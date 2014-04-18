@@ -1,0 +1,81 @@
+from Day.py import Day, Patient
+
+
+#In response to admin 'start day' button being pressed, make day
+TODAYSDATE = 04/18/14
+flow_doc_fn = "C:/Users/Noah/Desktop/Abortion Day Tracking/Flowchart Doc.txt"
+day = Day(TODAYSDATE, flow_doc_fn)
+
+step_order = day.get_step_order() # List of step strings in order
+form_data = day.get_form_data() # Dictionary
+
+
+'''Now the 'add patient' button is pressed as a patient comes in.
+A form to fill in patient name and DOB will pop up, as well as an
+option to set the step they're coming in at. '''
+patient_name = "Reinhard von Lohengramm"
+patient_DOB = "04/01/1945"
+incoming_step = step_order[0]
+
+day.add_patient(patient_name, patient_DOB, incoming_step)
+
+GUI_Display(incoming_step)
+
+#Another patient is added.
+patient_name = "Simon the Digger"
+patient_DOB = "03/10/1918"
+incoming_step = step_order[1]
+
+day.add_patient(patient_name, patient_DOB, incoming_step)
+
+GUI_Display(incoming_step)
+
+''' Whenever either patient bar on the GUI is clicked, the
+GUI will have to show the input form related to the step
+that that patient is on. Thus the GUI bar object should
+have some variable which keeps track of the current step.
+If it ever forgets, use the day.get_current_step(name, DOB)
+method.'''
+
+
+# Reinhard moves past checkout to ultrasound.
+outcome = [] # No data was inputted, so outcome list is empty.
+step, flag = day.get_next_step("Reinhard von Lohengramm", "04/01/1945", outcome)
+GUI_Display(step, flag)
+
+# Now Simon has Ultrasound info inputted.
+outcome = []
+label = "Ultrasound"
+result = 11.4
+t = (label, result)
+outcome.append(t)
+
+step, flag = day.get_next_step("Simon the Digger", "03/10/1918", outcome)
+GUI_Display(step, flag)
+
+#etc
+
+
+
+
+
+def GUI_Display(step, flag=''):
+    '''
+    Do GUI thingys here to display the appropriate form data.
+    '''
+    data_list = form_data.get(step, [])
+    for t in data_list:
+        label = t[0]
+        d_type = t[1]
+
+        if d_type == "float":
+            pass # Do GUI stuff with label.
+        elif d_type == "boolean":
+            pass # Do other GUI stuff with the label.
+
+    if flag != '':
+        if flag == "Emergency":
+            pass #Display pretty colors or something
+        elif flag == "Rhogam":
+            pass # Paint a big X on the patient's hip.
+        
