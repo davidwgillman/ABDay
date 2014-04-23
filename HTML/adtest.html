@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6 lte-ie8"> <![endif]-->
+<!--[if IE 7 ]> <html lang="en" class="no-js ie7 lte-ie8"> <![endif]-->
+<!--[if IE 8 ]> <html lang="en" class="no-js ie8 lte-ie8"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--> <html lang="en" class=" js cssanimations"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1" /> 
+    <title>ADT Accordion Demo</title>
+    
+    <style type="text/css">
+    @font-face
+    {
+        font-family: 'Avant';
+        src: url('http://static.tumblr.com/khrifcx/YyCn32g6y/itcavantgardepro-xlt.eot'); /* IE9 Compat Modes */
+        src: url('http://static.tumblr.com/khrifcx/YyCn32g6y/itcavantgardepro-xlt.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+             url('http://static.tumblr.com/khrifcx/iGln32g93/itcavantgardepro-xlt.woff') format('woff'), /* Modern Browsers */
+             url('http://static.tumblr.com/khrifcx/jSFn32g8k/itcavantgardepro-xlt.ttf')  format('truetype'), /* Safari, Android, iOS */
+             url('http://static.tumblr.com/khrifcx/xvWn32g7g/itcavantgardepro-xlt.svg#svgFontName') format('svg'); /* Legacy iOS */
+    }
+    
+    body
+    {
+        background: #000000 url("http://fc06.deviantart.net/fs37/f/2008/287/8/9/Black_Texture___Ray_by_Ethenyl.jpg") no-repeat center top;
+        background-position: fixed;
+        background-size: auto;
+	    font-family: Avant;
+    	font-weight: 400;
+	    font-size: 30px;
+	    color: #FFFFFF;
+    }
+    
+    .container
+    {
+    	width: 100%;
+    	position: relative;
+    	text-align: center;
+    }
+    
+    .ac-container
+    {
+    	width: 100%;
+    	margin: 10px auto 30px auto;
+    	text-align: center;
+    }
+
+    .ac-container label
+    {
+    	font-family: Avant;
+    	padding: 5px 20px;
+    	position: relative;
+    	z-index: 20;
+    	display: block;
+    	height: 30px;
+    	cursor: pointer;
+    	color: #000000;
+    	text-shadow: 1px 1px 1px rgba(255,255,255,0.8);
+    	line-height: 33px;
+    	font-size: 30px;
+    	background: #ffffff;
+    	background: -moz-linear-gradient(top, #ffffff 1%, #eaeaea 100%);
+    	background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,#ffffff), color-stop(100%,#eaeaea));
+    	background: -webkit-linear-gradient(top, #ffffff 1%,#eaeaea 100%);
+    	background: -o-linear-gradient(top, #ffffff 1%,#eaeaea 100%);
+    	background: -ms-linear-gradient(top, #ffffff 1%,#eaeaea 100%);
+    	background: linear-gradient(top, #ffffff 1%,#eaeaea 100%);
+    	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#eaeaea',GradientType=0 );
+    	box-shadow: 
+    		0px 0px 0px 1px rgba(155,155,155,0.3), 
+    		1px 0px 0px 0px rgba(255,255,255,0.9) inset, 
+    		0px 2px 2px rgba(0,0,0,0.1);
+    }
+
+    .ac-container label:hover
+    {
+    	background: #ffffff;
+    }
+
+    .ac-container input:checked + label,
+    .ac-container input:checked + label:hover
+    {
+    	background: #c6e1ec;
+    	color: #3d7489;
+    	text-shadow: 0px 1px 1px rgba(255,255,255, 0.6);
+    	box-shadow: 
+    		0px 0px 0px 1px rgba(155,155,155,0.3), 
+    		0px 2px 2px rgba(0,0,0,0.1);
+    }
+    
+    .ac-container label:hover:after,
+    .ac-container input:checked + label:hover:after
+    {
+    	content: '';
+    	position: absolute;
+    	width: 24px;
+    	height: 24px;
+    	right: 13px;
+    	top: 7px;
+    	background: transparent url(http://static.tumblr.com/khrifcx/Ytcn3h0cg/arrow_down.png) no-repeat center center;	
+    }
+
+    .ac-container input:checked + label:hover:after
+    {
+    	background-image: url(http://static.tumblr.com/khrifcx/03mn3h0cz/arrow_up.png);
+    }
+
+    .ac-container input
+    {
+    	display: none;
+    }
+
+    .ac-container article
+    {
+    	background: rgba(255, 255, 255, 0.5);
+    	margin-top: -1px;
+    	overflow: hidden;
+    	height: 0px;
+    	position: relative;
+    	z-index: 10;
+    	-webkit-transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
+    	-moz-transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
+    	-o-transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
+    	-ms-transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
+    	transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
+    }
+
+    .ac-container article p
+    {
+    	color: #777;
+    	line-height: 25px;
+    	font-size: 23px;
+    	padding: 20px;
+    	text-shadow: 1px 1px 1px rgba(255,255,255,0.8);
+    }
+
+    .ac-container input:checked ~ article
+    {
+    	-webkit-transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
+    	-moz-transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
+    	-o-transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
+    	-ms-transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
+    	transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
+    	box-shadow: 0px 0px 0px 1px rgba(155,155,155,0.3);
+    }
+    
+    .ac-container input:checked ~ article.ac-small
+    {
+	    height: 140px;
+    }
+
+    .ac-container input:checked ~ article.ac-medium
+    {
+	    height: 180px;
+    }
+
+    .ac-container input:checked ~ article.ac-large
+    {
+	    height: 230px;
+    }
+    </style>    
+	
+	<script type="text/javascript" src="http://static.tumblr.com/khrifcx/it9n3gzev/modernizr.custom.29473.js"></script>
+</head>
+    
+<body>
+    <div class="container">
+	    <section class="ac-container">
+			<div>
+			    <input id="ac-1" name="accordion-1" type="checkbox">
+				<label for="ac-1">
+				    PATIENT 1
+				</label>
+				<article class="ac-small">
+					<p>
+					    FORMS GO HERE
+					</p>
+				</article>
+			</div>
+			<div>
+				<input id="ac-2" name="accordion-1" type="checkbox">
+				<label for="ac-2">
+				    PATIENT 2
+				</label>
+				<article class="ac-medium">
+					<p>
+				        FORMS GO HERE
+					</p>
+				</article>
+			</div>
+			<div>
+				<input id="ac-3" name="accordion-1" type="checkbox">
+				<label for="ac-3">
+				    PATIENT 3 
+				</label>
+				<article class="ac-large">
+					<p>
+					    FORMS GO HERE
+					</p>
+				</article>
+			</div>
+        </section>
+    </div>
+</body>
+</html>
