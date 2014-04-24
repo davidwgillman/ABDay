@@ -34,16 +34,7 @@ class Day(object):
             return False
         else:
             return p.step
-
-    def get_form_data(self):
-        # Returns the form data dictionary.
-        f_d = self.flow.getFormData()
-        return f_d
-
-    def get_step_order(self):
-        s_o = self.flow.getStepOrder()
-        return s_o
-
+            
     def _fetch_patient(self, name, DOB):
         '''
         Returns the patient object corresponding to the name passed in
@@ -53,6 +44,18 @@ class Day(object):
             if p.name == name and p.DOB == DOB:
                 return p
         return False
+        
+#Flow stuff:
+    def get_form_data(self):
+        # Returns the form data dictionary.
+        f_d = self.flow.getFormData()
+        return f_d
+
+    def get_step_order(self):
+        s_o = self.flow.getStepOrder()
+        return s_o
+
+    
         
 
 
